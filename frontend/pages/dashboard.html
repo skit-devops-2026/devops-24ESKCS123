@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrustLens — Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #09090b; }
+  </style>
+</head>
+<body class="bg-neutral-950 text-white antialiased selection:bg-red-600 selection:text-white">
+  <div class="min-h-screen">
+    <nav class="sticky top-0 z-50 h-16 w-full border-b border-neutral-800/80 bg-neutral-950/80 backdrop-blur-md">
+      <div class="mx-auto flex h-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <a href="indexDesign.html" class="flex items-center gap-3 font-bold text-xl tracking-wider text-white hover:opacity-90 transition-opacity">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg border border-red-600/50 bg-red-950/40 text-red-500 shadow-[0_0_12px_rgba(220,38,38,0.3)]">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.5 9l-5 8.5M9.5 9l5 8.5M6 12h12"></path>
+            </svg>
+          </span>
+          <span>Trust<span class="text-red-600">Lens</span></span>
+        </a>
+
+        <div class="flex items-center gap-3">
+          <a href="login.html" class="hidden sm:inline-flex items-center justify-center rounded-lg border border-neutral-800 bg-neutral-900/60 px-4 py-2 text-sm font-medium text-neutral-200 transition-colors hover:border-red-800 hover:text-red-400">
+            Login
+          </a>
+          <a href="detector.html" class="hidden sm:inline-flex items-center justify-center rounded-lg border border-neutral-800 bg-neutral-900/60 px-4 py-2 text-sm font-medium text-neutral-200 transition-colors hover:border-red-800 hover:text-red-400">
+            Detector
+          </a>
+          <a href="indexDesign.html" class="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-[0_0_15px_rgba(220,38,38,0.5)] hover:bg-red-700 hover:shadow-[0_0_20px_rgba(220,38,38,0.7)] transition-all">
+            Home
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+      <section class="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-red-400">Dashboard</p>
+          <h1 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Your previous reports at a glance</h1>
+        </div>
+        <span class="rounded-full border border-emerald-700 bg-emerald-950/60 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-300">Signed in area</span>
+      </section>
+
+      <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <article class="rounded-2xl border border-red-500/30 bg-red-950/60 p-5 shadow-[0_0_24px_rgba(127,29,29,0.14)]">
+          <p class="text-xs uppercase tracking-[0.18em] text-red-300">High risk</p>
+          <h2 class="mt-3 text-lg font-semibold text-white">Urgent warehouse role</h2>
+          <p class="mt-2 text-sm leading-6 text-red-100/80">87% • Today • Wire transfer request</p>
+        </article>
+
+        <article class="rounded-2xl border border-amber-500/30 bg-amber-950/55 p-5 shadow-[0_0_24px_rgba(127,29,29,0.12)]">
+          <p class="text-xs uppercase tracking-[0.18em] text-amber-300">Medium risk</p>
+          <h2 class="mt-3 text-lg font-semibold text-white">Remote support listing</h2>
+          <p class="mt-2 text-sm leading-6 text-amber-100/80">54% • Yesterday • Unclear recruiter info</p>
+        </article>
+
+        <article class="rounded-2xl border border-emerald-500/30 bg-emerald-950/55 p-5 shadow-[0_0_24px_rgba(127,29,29,0.10)]">
+          <p class="text-xs uppercase tracking-[0.18em] text-emerald-300">Low risk</p>
+          <h2 class="mt-3 text-lg font-semibold text-white">Campus hiring post</h2>
+          <p class="mt-2 text-sm leading-6 text-emerald-100/80">18% • 2 days ago • Normal interview flow</p>
+        </article>
+
+        <article class="rounded-2xl border border-sky-500/30 bg-sky-950/55 p-5 shadow-[0_0_24px_rgba(127,29,29,0.10)]">
+          <p class="text-xs uppercase tracking-[0.18em] text-sky-300">Saved note</p>
+          <h2 class="mt-3 text-lg font-semibold text-white">Interview follow-up</h2>
+          <p class="mt-2 text-sm leading-6 text-sky-100/80">Draft • Company website checked</p>
+        </article>
+
+        <article class="rounded-2xl border border-fuchsia-500/30 bg-fuchsia-950/55 p-5 shadow-[0_0_24px_rgba(127,29,29,0.10)] sm:col-span-2 xl:col-span-2">
+          <p class="text-xs uppercase tracking-[0.18em] text-fuchsia-300">Pinned report</p>
+          <h2 class="mt-3 text-lg font-semibold text-white">Fake recruiter from messaging app</h2>
+          <p class="mt-2 text-sm leading-6 text-fuchsia-100/80">92% • Pinned for review • Missing company domain</p>
+        </article>
+
+        <article class="rounded-2xl border border-neutral-700 bg-neutral-900/80 p-5 shadow-[0_0_24px_rgba(0,0,0,0.2)] sm:col-span-2 xl:col-span-2">
+          <p class="text-xs uppercase tracking-[0.18em] text-neutral-400">Placeholder</p>
+          <h2 class="mt-3 text-lg font-semibold text-white">Space for filters, search, charts, or tags</h2>
+          <p class="mt-2 text-sm leading-6 text-neutral-400">This tile is just a rough layout marker so we can see the dashboard structure before building the actual interactions.</p>
+        </article>
+      </section>
+
+      <section class="mt-6 grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+        <article class="rounded-3xl border border-neutral-800 bg-neutral-900/70 p-5">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-red-400">Quick summary</p>
+          <div class="mt-4 grid gap-4 sm:grid-cols-3">
+            <div class="rounded-2xl border border-neutral-800 bg-red-950/30 p-4">
+              <p class="text-3xl font-extrabold text-red-400">12</p>
+              <p class="mt-2 text-sm text-neutral-300">reports saved</p>
+            </div>
+            <div class="rounded-2xl border border-neutral-800 bg-amber-950/25 p-4">
+              <p class="text-3xl font-extrabold text-amber-400">4</p>
+              <p class="mt-2 text-sm text-neutral-300">needs review</p>
+            </div>
+            <div class="rounded-2xl border border-neutral-800 bg-emerald-950/25 p-4">
+              <p class="text-3xl font-extrabold text-emerald-400">8</p>
+              <p class="mt-2 text-sm text-neutral-300">cleared entries</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="rounded-3xl border border-neutral-800 bg-neutral-900/70 p-5">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-red-400">Access area</p>
+          <div class="mt-4 space-y-3">
+            <div class="rounded-2xl border border-sky-500/30 bg-sky-950/40 p-4 text-sm text-sky-100">Saved scans panel</div>
+            <div class="rounded-2xl border border-fuchsia-500/30 bg-fuchsia-950/40 p-4 text-sm text-fuchsia-100">Pinned reports panel</div>
+            <div class="rounded-2xl border border-neutral-700 bg-neutral-950/60 p-4 text-sm text-neutral-300">Account activity panel</div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
