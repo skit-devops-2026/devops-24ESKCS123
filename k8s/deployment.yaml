@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trustlens-frontend
+  labels:
+    app.kubernetes.io/name: trustlens-frontend
+    app.kubernetes.io/part-of: trustlens
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: trustlens-frontend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: trustlens-frontend
+        app.kubernetes.io/part-of: trustlens
+    spec:
+      containers:
+        - name: frontend
+          image: ghcr.io/skit-devops-2026/devops-24eskcs123-frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trustlens-backend
+  labels:
+    app.kubernetes.io/name: trustlens-backend
+    app.kubernetes.io/part-of: trustlens
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: trustlens-backend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: trustlens-backend
+        app.kubernetes.io/part-of: trustlens
+    spec:
+      containers:
+        - name: backend
+          image: ghcr.io/skit-devops-2026/devops-24eskcs123-backend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20

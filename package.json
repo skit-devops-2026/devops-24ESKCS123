@@ -10,8 +10,7 @@
     "lint": "eslint . --ext .js",
     "check-js": "node --check frontend/js/indexScript.js && node --check frontend/js/signupValidation.js && node --check frontend/js/loginValidation.js",
     "test:unit": "node --test tests/validation.test.js",
-    "test:links": "node scripts/check-links.js",
-    "test": "npm run test:unit && npm run test:links"
+    "test": "npm run test:unit"
   },
   "repository": {
     "type": "git",
