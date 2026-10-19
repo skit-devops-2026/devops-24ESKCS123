@@ -42,31 +42,39 @@ jobs:
       - run: make build
 
   # ---------------------------------------------------------------------------
-  # M4 — Containerization. Uncomment and complete when you get there.
-  # The push to the registry is what proves your build actually ran, so it is
-  # not optional.
+  # M5 — Containerization.
   # ---------------------------------------------------------------------------
 
-  # docker:
-  #   name: Build and push images
-  #   needs: build-and-test
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     contents: read
-  #     packages: write
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: docker/login-action@v3
-  #       with:
-  #         registry: ghcr.io
-  #         username: ${{ github.actor }}
-  #         password: ${{ secrets.GITHUB_TOKEN }}
-  #     - uses: docker/build-push-action@v6
-  #       with:
-  #         context: ./backend
-  #         push: true
-  #         tags: ghcr.io/${{ github.repository }}-backend:${{ github.sha }}
-  #     # ... and the same for ./frontend
+  docker:
+    name: Build and push images
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Normalize image repository name
+        id: image-name
+        shell: bash
+        run: echo "repository=${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+      - uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          file: ./frontend/Dockerfile
+          push: true
+          tags: ghcr.io/${{ steps.image-name.outputs.repository }}-frontend:${{ github.sha }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          file: ./backend/Dockerfile
+          push: true
+          tags: ghcr.io/${{ steps.image-name.outputs.repository }}-backend:${{ github.sha }}
 
   # ---------------------------------------------------------------------------
   # M5 — Deployment. Add a deploy job here.

@@ -1,0 +1,13 @@
+{
+  "name": "trustlens-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Minimal TrustLens Node service for local container orchestration",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

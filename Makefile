@@ -12,20 +12,21 @@
 
 install:
 	npm ci
+	cd frontend && npm ci
+	cd backend && npm ci
 
 test:
 	node --test tests/validation.test.js
 	node scripts/check-links.js
 
 build:
-	@echo "no build step"
+	cd frontend && npm run build
 
 run:
-	@echo "TODO: start the app locally" && exit 1
+	docker compose up --build
 
-# Needed from M4 onwards
 docker-build:
-	@echo "TODO: docker build for frontend and backend" && exit 1
+	docker compose build
 
 docker-up:
-	docker compose up --build
+	docker compose up
