@@ -1,11 +1,7 @@
+import SignupPage from './pages/SignupPage.jsx'
 
 function App() {
-  return (
-    <main>
-      <h1>My Application</h1>
-      <p>React is set up and running.</p>
-    </main>
-  )
+  return <SignupPage />
 }
 
 export default App
