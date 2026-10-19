@@ -41,6 +41,19 @@ health endpoint is available at `http://localhost:3000/health`. The legacy
 frontend under `frontend/pages` remains separate and is not migrated or
 containerized yet.
 
+## Kubernetes
+
+Kubernetes manifests for the React frontend and Node backend are in
+[`k8s/`](./k8s/). Apply them to a cluster with:
+
+```bash
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+```
+
+The frontend is exposed through NodePort `30080`. The backend remains an
+internal ClusterIP service on port `3000`.
+
 ## Live URL
 
 <Add once M5 is done. Until then, leave as is.>
