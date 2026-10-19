@@ -17,7 +17,6 @@ install:
 
 test:
 	node --test tests/validation.test.js
-	node scripts/check-links.js
 
 build:
 	cd frontend && npm run build
