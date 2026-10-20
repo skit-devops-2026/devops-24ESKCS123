@@ -1,0 +1,6 @@
+.login-options { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; color: #d4d4d4; font-size: .875rem; }
+.remember-option { display: flex; align-items: center; gap: .5rem; }
+.remember-option input { width: 1rem; height: 1rem; accent-color: #dc2626; }
+.forgot-link { color: #f87171; font-weight: 500; text-decoration: none; }
+.forgot-link:hover { color: #fca5a5; }
+.login-grid { grid-template-columns: .95fr 1fr; }

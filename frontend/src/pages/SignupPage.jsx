@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import '../styles/SignupPage.css'
+import AuthField from '../components/AuthField.jsx'
+import AuthLayout from '../components/AuthLayout.jsx'
 
 const initialForm = {
   fullName: '',
@@ -99,37 +100,8 @@ function App() {
   }
 
   return (
-    <div className="signup-page">
-      <nav className="signup-nav">
-        <div className="signup-container signup-nav-inner">
-          <a href="pages/indexDesign.html" className="brand-link">
-            <span className="brand-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="9" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14.5 9l-5 8.5M9.5 9l5 8.5M6 12h12" />
-              </svg>
-            </span>
-            <span>Trust<span className="accent-text">Lens</span></span>
-          </a>
-
-          <div className="signup-nav-links">
-            <a href="pages/indexDesign.html#about-section">How It Works</a>
-            <a href="pages/indexDesign.html#services-section">Scam Stats</a>
-            <a href="pages/indexDesign.html#contact-section">About</a>
-          </div>
-
-          <div className="signup-nav-actions">
-            <a href="pages/indexDesign.html" className="home-link">Back to Home</a>
-            <a href="pages/detector.html" className="primary-link">Scan Job Offer</a>
-          </div>
-        </div>
-      </nav>
-
-      <main className="signup-main">
-        <div className="signup-glow signup-glow-left" />
-        <div className="signup-glow signup-glow-center" />
-        <section className="signup-container signup-content">
-          <div className="signup-grid">
+    <AuthLayout actionLabel="Back to Home" actionHref="pages/indexDesign.html">
+      <div className="signup-grid">
             <div className="signup-intro">
               <div className="eyebrow"><span className="pulse-dot" />JOIN TRUSTLENS</div>
               <div className="intro-copy">
@@ -179,7 +151,7 @@ function App() {
                 )}
 
                 <div className="form-row">
-                  <Field
+                  <AuthField
                     label="Full name"
                     name="full_name"
                     type="text"
@@ -189,7 +161,7 @@ function App() {
                     onChange={handleChange}
                     inputRef={(element) => { inputRefs.current.fullName = element }}
                   />
-                  <Field
+                  <AuthField
                     label="Email"
                     name="email"
                     type="email"
@@ -201,7 +173,7 @@ function App() {
                   />
                 </div>
 
-                <Field
+                <AuthField
                   label="Password"
                   name="password"
                   type="password"
@@ -244,38 +216,9 @@ function App() {
               </p>
             </div>
           </div>
-        </section>
-      </main>
-
-      <footer className="signup-footer">© TrustLens Scam Detector.</footer>
       {toast && <div className={`signup-toast ${toast.type}`} role={toast.type === 'error' ? 'alert' : 'status'}>{toast.message}</div>}
-    </div>
+    </AuthLayout>
   )
 }
 
-function Field({ label, name, type, placeholder, value, error, onChange, inputRef }) {
-  return (
-    <div className="field-group">
-      <label htmlFor={name}>{label}</label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        ref={inputRef}
-        aria-invalid={Boolean(error)}
-        autoComplete={name === 'password' ? 'new-password' : name === 'email' ? 'email' : 'name'}
-        className={error ? 'has-error' : ''}
-      />
-      {error && <ErrorMessage message={error} />}
-    </div>
-  )
-}
-
-function ErrorMessage({ message }) {
-  return <p className="field-error" role="alert">{message}</p>
-}
-
-export default App
+export default SignupPage
