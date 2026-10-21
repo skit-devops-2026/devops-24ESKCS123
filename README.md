@@ -56,9 +56,21 @@ internal ClusterIP service on port `3000`.
 
 ## Live URL
 
-<Add once M5 is done. Until then, leave as is.>
+https://skit-devops-2026.github.io/devops-24ESKCS123/
+
+The React frontend is deployed by
+[`.github/workflows/deploy-pages.yml`](./.github/workflows/deploy-pages.yml).
+The deployment record is committed at
+[`docs/deployment-screenshot.png`](./docs/deployment-screenshot.png).
 
 ## Health endpoint
 
 `GET /health` returns the running commit SHA. See `Makefile` and the milestone
 sheet for why this is required.
+
+## Monitoring
+
+Prometheus scrape settings are in
+[`monitoring/prometheus.yml`](./monitoring/prometheus.yml), and the Grafana
+dashboard definition is in
+[`monitoring/grafana-dashboard.json`](./monitoring/grafana-dashboard.json).
