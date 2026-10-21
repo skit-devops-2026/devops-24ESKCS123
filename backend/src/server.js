@@ -9,6 +9,20 @@ const server = http.createServer((request, response) => {
     return;
   }
 
+  if (request.method === 'GET' && request.url === '/metrics') {
+    const uptime = process.uptime();
+    response.writeHead(200, { 'Content-Type': 'text/plain; version=0.0.4' });
+    response.end(
+      [
+        '# HELP process_uptime_seconds Node.js process uptime in seconds.',
+        '# TYPE process_uptime_seconds gauge',
+        `process_uptime_seconds ${uptime}`,
+        '',
+      ].join('\n'),
+    );
+    return;
+  }
+
   response.writeHead(404, { 'Content-Type': 'application/json' });
   response.end(JSON.stringify({ error: 'Not found' }));
 });
