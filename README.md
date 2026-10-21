@@ -56,10 +56,8 @@ internal ClusterIP service on port `3000`.
 
 ## Live URL
 
-https://skit-devops-2026.github.io/devops-24ESKCS123/
+https://trustlens-p5sv.onrender.com/
 
-The React frontend is deployed by
-[`.github/workflows/deploy-pages.yml`](./.github/workflows/deploy-pages.yml).
 The deployment record is committed at
 [`docs/deployment-screenshot.png`](./docs/deployment-screenshot.png).
 
