@@ -56,7 +56,7 @@ internal ClusterIP service on port `3000`.
 
 ## Live URL
 
-https://trustlens-p5sv.onrender.com/
+Live URL: https://trustlens-p5sv.onrender.com/
 
 The deployment record is committed at
 [`docs/deployment-screenshot.png`](./docs/deployment-screenshot.png).
