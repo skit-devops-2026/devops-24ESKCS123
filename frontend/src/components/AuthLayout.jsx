@@ -1,4 +1,6 @@
 import '../styles/AuthLayout.css'
+import '../styles/TrustLensBrand.css'
+import TrustLensBrand from './TrustLensBrand.jsx'
 
 function AuthLayout({ actionLabel, actionHref, children }) {
   return (
@@ -6,13 +8,7 @@ function AuthLayout({ actionLabel, actionHref, children }) {
       <nav className="signup-nav">
         <div className="signup-container signup-nav-inner">
           <a href="pages/indexDesign.html" className="brand-link">
-            <span className="brand-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="9" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14.5 9l-5 8.5M9.5 9l5 8.5M6 12h12" />
-              </svg>
-            </span>
-            <span>Trust<span className="accent-text">Lens</span></span>
+            <TrustLensBrand />
           </a>
 
           <div className="signup-nav-links">
