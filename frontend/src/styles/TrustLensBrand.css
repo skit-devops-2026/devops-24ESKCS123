@@ -1,0 +1,4 @@
+.dashboard-brand-content { display: flex; align-items: center; gap: .75rem; }
+.dashboard-brand-mark { display: grid; width: 2rem; height: 2rem; place-items: center; border: 1px solid rgb(220 38 38 / 50%); border-radius: .5rem; color: #ef4444; background: rgb(69 10 10 / 40%); box-shadow: 0 0 12px rgb(220 38 38 / 30%); }
+.dashboard-brand-mark svg { width: 1rem; height: 1rem; }
+.dashboard-accent { color: #dc2626; }
