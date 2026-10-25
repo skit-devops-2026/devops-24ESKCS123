@@ -71,7 +71,7 @@ function LoginPage() {
   }
 
   return (
-    <AuthLayout actionLabel="Sign Up" actionHref="pages/signup.html">
+    <AuthLayout actionLabel="Sign Up" actionHref="/signup">
       <div className="signup-grid login-grid">
         <div className="signup-intro">
           <div className="eyebrow"><span className="pulse-dot" />WELCOME BACK</div>
@@ -144,7 +144,7 @@ function LoginPage() {
             <button type="submit" className="submit-button">Sign in</button>
           </form>
 
-          <p className="signin-prompt">New to TrustLens? <a href="pages/signup.html">Create an account</a></p>
+          <p className="signin-prompt">New to TrustLens? <a href="/signup">Create an account</a></p>
         </div>
       </div>
       {toast && <div className={`signup-toast ${toast.type}`} role={toast.type === 'error' ? 'alert' : 'status'}>{toast.message}</div>}

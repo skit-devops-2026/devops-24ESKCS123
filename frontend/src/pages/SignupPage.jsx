@@ -100,7 +100,7 @@ function App() {
   }
 
   return (
-    <AuthLayout actionLabel="Back to Home" actionHref="pages/indexDesign.html">
+    <AuthLayout actionLabel="Back to Home" actionHref="/">
       <div className="signup-grid">
             <div className="signup-intro">
               <div className="eyebrow"><span className="pulse-dot" />JOIN TRUSTLENS</div>
@@ -212,7 +212,7 @@ function App() {
               </form>
 
               <p className="signin-prompt">
-                Already have an account? <a href="pages/login.html">Sign in</a>
+                Already have an account? <a href="/login">Sign in</a>
               </p>
             </div>
           </div>
