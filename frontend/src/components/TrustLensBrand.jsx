@@ -1,3 +1,5 @@
+import '../styles/TrustLensBrand.css'
+
 function TrustLensBrand() {
   return (
     <span className="dashboard-brand-content">

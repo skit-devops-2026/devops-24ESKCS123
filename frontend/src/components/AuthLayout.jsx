@@ -1,5 +1,4 @@
 import '../styles/AuthLayout.css'
-import '../styles/TrustLensBrand.css'
 import TrustLensBrand from './TrustLensBrand.jsx'
 
 function AuthLayout({ actionLabel, actionHref, children }) {
@@ -7,19 +6,19 @@ function AuthLayout({ actionLabel, actionHref, children }) {
     <div className="signup-page">
       <nav className="signup-nav">
         <div className="signup-container signup-nav-inner">
-          <a href="pages/indexDesign.html" className="brand-link">
+          <a href="/" className="brand-link">
             <TrustLensBrand />
           </a>
 
           <div className="signup-nav-links">
-            <a href="pages/indexDesign.html#about-section">How It Works</a>
-            <a href="pages/indexDesign.html#services-section">Scam Stats</a>
-            <a href="pages/indexDesign.html#contact-section">About</a>
+            <a href="/#about-section">How It Works</a>
+            <a href="/#services-section">Scam Stats</a>
+            <a href="/#contact-section">About</a>
           </div>
 
           <div className="signup-nav-actions">
             <a href={actionHref} className="home-link">{actionLabel}</a>
-            <a href="pages/detector.html" className="primary-link">Scan Job Offer</a>
+            <a href="/detector" className="primary-link">Scan Job Offer</a>
           </div>
         </div>
       </nav>

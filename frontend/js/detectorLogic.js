@@ -88,6 +88,8 @@ function analyzeJobText(rawText) {
   };
 }
 
+export { analyzeJobText };
+
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     analyzeJobText,

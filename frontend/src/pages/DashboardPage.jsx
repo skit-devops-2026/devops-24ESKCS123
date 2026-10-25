@@ -1,6 +1,5 @@
 import TrustLensBrand from '../components/TrustLensBrand.jsx'
 import '../styles/DashboardPage.css'
-import '../styles/TrustLensBrand.css'
 
 const reportCards = [
   {
@@ -48,13 +47,13 @@ function DashboardPage() {
     <div className="dashboard-page">
       <nav className="dashboard-nav">
         <div className="dashboard-container dashboard-nav-inner">
-          <a href="pages/indexDesign.html" className="dashboard-brand">
+          <a href="/" className="dashboard-brand">
             <TrustLensBrand />
           </a>
           <div className="dashboard-nav-actions">
-            <a href="pages/login.html" className="dashboard-nav-link">Login</a>
-            <a href="pages/detector.html" className="dashboard-nav-link">Detector</a>
-            <a href="pages/indexDesign.html" className="dashboard-home-link">Home</a>
+            <a href="/login" className="dashboard-nav-link">Login</a>
+            <a href="/detector" className="dashboard-nav-link">Detector</a>
+            <a href="/" className="dashboard-home-link">Home</a>
           </div>
         </div>
       </nav>
