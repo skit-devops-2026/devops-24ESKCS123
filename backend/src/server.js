@@ -1,32 +1,33 @@
-const http = require('node:http');
+const path = require('node:path');
+const dotenv = require('dotenv');
+const { buildApp } = require('./app');
+const { connectDatabase, disconnectDatabase } = require('./db');
+
+dotenv.config({ path: path.join(__dirname, '../.env') });
+dotenv.config({ path: path.join(__dirname, '../atlas-credentials.env') });
 
 const port = Number(process.env.PORT || 3000);
+const app = buildApp();
 
-const server = http.createServer((request, response) => {
-  if (request.method === 'GET' && request.url === '/health') {
-    response.writeHead(200, { 'Content-Type': 'application/json' });
-    response.end(JSON.stringify({ status: 'ok' }));
-    return;
-  }
+async function startServer() {
+  await connectDatabase();
 
-  if (request.method === 'GET' && request.url === '/metrics') {
-    const uptime = process.uptime();
-    response.writeHead(200, { 'Content-Type': 'text/plain; version=0.0.4' });
-    response.end(
-      [
-        '# HELP process_uptime_seconds Node.js process uptime in seconds.',
-        '# TYPE process_uptime_seconds gauge',
-        `process_uptime_seconds ${uptime}`,
-        '',
-      ].join('\n'),
-    );
-    return;
-  }
+  const server = app.listen(port, '0.0.0.0', () => {
+    console.log(`TrustLens backend listening on port ${port}`);
+  });
 
-  response.writeHead(404, { 'Content-Type': 'application/json' });
-  response.end(JSON.stringify({ error: 'Not found' }));
-});
+  const shutdown = async () => {
+    server.close(async () => {
+      await disconnectDatabase();
+      process.exit(0);
+    });
+  };
 
-server.listen(port, '0.0.0.0', () => {
-  console.log(`TrustLens backend listening on port ${port}`);
+  process.on('SIGINT', shutdown);
+  process.on('SIGTERM', shutdown);
+}
+
+startServer().catch((error) => {
+  console.error('Failed to start backend:', error.message);
+  process.exit(1);
 });
