@@ -17,7 +17,7 @@ This will be a fullstack application which will detect recruitment scam posts th
 
 - Frontend: React/Vite (legacy HTML/CSS/JavaScript frontend retained during migration)
 - Backend: Node.js
-- Database: -
+- Database: MongoDB Atlas
 
 ## Running locally
 
@@ -25,6 +25,15 @@ This will be a fullstack application which will detect recruitment scam posts th
 make install
 make run
 ```
+
+### Backend environment setup (required for auth and CRUD APIs)
+
+1. Copy [backend/.env.example](./backend/.env.example) to `backend/.env`.
+2. Set `MONGODB_URI` to your MongoDB Atlas cluster connection string.
+3. Set a strong `JWT_SECRET`.
+
+The backend also reads `backend/atlas-credentials.env` if present (local only).
+Never commit real credentials.
 
 ## Containerization
 
@@ -63,8 +72,23 @@ The deployment record is committed at
 
 ## Health endpoint
 
-`GET /health` returns the running commit SHA. See `Makefile` and the milestone
-sheet for why this is required.
+`GET /health` returns a JSON readiness payload:
+
+```json
+{ "status": "ok" }
+```
+
+## API endpoints
+
+- `POST /api/auth/signup`
+- `POST /api/auth/login`
+- `GET /api/auth/me`
+- `PATCH /api/auth/me`
+- `POST /api/scans`
+- `GET /api/scans`
+- `GET /api/scans/:id`
+- `PATCH /api/scans/:id`
+- `DELETE /api/scans/:id`
 
 ## Monitoring
 
