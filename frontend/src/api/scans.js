@@ -1,5 +1,13 @@
 import { request } from './client.js'
 
+function createScan(token, scan) {
+  return request('/scans', {
+    method: 'POST',
+    token,
+    body: JSON.stringify(scan),
+  })
+}
+
 function getScans(token) {
   return request('/scans', { token })
 }
@@ -19,4 +27,4 @@ function deleteScan(token, id) {
   })
 }
 
-export { deleteScan, getScans, updateScan }
+export { createScan, deleteScan, getScans, updateScan }

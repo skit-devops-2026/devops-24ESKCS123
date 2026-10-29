@@ -20,6 +20,7 @@
 .detector-card label { display: block; margin-bottom: .75rem; color: #d4d4d4; font-size: .875rem; font-weight: 500; }
 .detector-card textarea { width: 100%; min-height: 14.375rem; resize: vertical; padding: 1rem; border: 1px solid #404040; border-radius: 1rem; outline: 0; color: #f5f5f5; background: rgb(10 10 10 / 80%); font: .875rem/1.5 Arial, sans-serif; }
 .detector-card textarea:focus { border-color: #ef4444; box-shadow: 0 0 0 2px rgb(239 68 68 / 20%); }
+.detector-input-meta { display: flex; justify-content: flex-end; margin-top: .4rem; color: #737373; font-size: .75rem; }
 .detector-buttons { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
 .detector-buttons button { padding: .625rem 1rem; border: 1px solid #404040; border-radius: .75rem; color: #e5e5e5; background: rgb(23 23 23 / 60%); cursor: pointer; font: inherit; }
 .detector-buttons button:first-child { border: 0; color: #fff; background: #dc2626; box-shadow: 0 0 20px rgb(220 38 38 / 45%); }
@@ -37,6 +38,18 @@
 .result-list > p { margin: 0 0 .5rem; color: #a3a3a3; font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; }
 .result-list ul { display: grid; gap: .5rem; padding: 0; margin: 0; list-style: none; }
 .result-list li { padding: .625rem .75rem; border: 1px solid #262626; border-radius: .75rem; color: #d4d4d4; background: rgb(10 10 10 / 50%); font-size: .875rem; }
+.detector-save-panel { display: grid; gap: .6rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid #262626; }
+.detector-save-panel label, .detector-save-panel strong { color: #f5f5f5; font-size: .875rem; }
+.detector-save-panel input { width: 100%; padding: .7rem .75rem; border: 1px solid #404040; border-radius: .65rem; outline: 0; color: #f5f5f5; background: rgb(10 10 10 / 80%); font: inherit; }
+.detector-save-panel input:focus { border-color: #ef4444; box-shadow: 0 0 0 2px rgb(239 68 68 / 20%); }
+.detector-save-panel button { padding: .7rem .85rem; border: 0; border-radius: .65rem; color: #fff; background: #dc2626; cursor: pointer; font: inherit; }
+.detector-save-panel button:disabled { cursor: wait; opacity: .7; }
+.detector-login-prompt { gap: .45rem; }
+.detector-login-prompt span, .save-message { color: #a3a3a3; font-size: .8rem; line-height: 1.5; }
+.detector-login-prompt a { color: #fca5a5; font-size: .8rem; text-decoration: none; }
+.detector-login-prompt a:hover { text-decoration: underline; }
+.save-message.success { color: #6ee7b7; }
+.save-message.error { color: #fca5a5; }
 .detector-info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
 .detector-info-grid article { padding: 1rem; }
 .detector-info-grid h3 { margin: 0 0 .5rem; font-size: 1.125rem; }
