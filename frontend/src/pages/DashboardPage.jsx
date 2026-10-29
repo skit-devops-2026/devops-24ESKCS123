@@ -1,4 +1,5 @@
 import TrustLensBrand from '../components/TrustLensBrand.jsx'
+import { useAuth } from '../context/AuthContext.jsx'
 import '../styles/DashboardPage.css'
 
 const reportCards = [
@@ -43,6 +44,13 @@ const reportCards = [
 ]
 
 function DashboardPage() {
+  const { user, logout } = useAuth()
+
+  const handleLogout = () => {
+    logout()
+    window.location.replace('/')
+  }
+
   return (
     <div className="dashboard-page">
       <nav className="dashboard-nav">
@@ -51,8 +59,9 @@ function DashboardPage() {
             <TrustLensBrand />
           </a>
           <div className="dashboard-nav-actions">
-            <a href="/login" className="dashboard-nav-link">Login</a>
+            <span className="dashboard-user">{user?.fullName}</span>
             <a href="/detector" className="dashboard-nav-link">Detector</a>
+            <button type="button" className="dashboard-nav-link dashboard-logout" onClick={handleLogout}>Log out</button>
             <a href="/" className="dashboard-home-link">Home</a>
           </div>
         </div>
@@ -62,7 +71,7 @@ function DashboardPage() {
         <section className="dashboard-heading">
           <div>
             <p className="dashboard-eyebrow">Dashboard</p>
-            <h1>Your previous reports at a glance</h1>
+            <h1>{user ? `${user.fullName}'s reports at a glance` : 'Your previous reports at a glance'}</h1>
           </div>
           <span className="signed-in-badge">Signed in area</span>
         </section>

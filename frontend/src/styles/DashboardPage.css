@@ -12,7 +12,9 @@
 .dashboard-brand { color: #fff; font-size: 1.25rem; font-weight: 700; letter-spacing: .05em; text-decoration: none; }
 .dashboard-nav-actions { display: flex; align-items: center; gap: .75rem; }
 .dashboard-nav-link, .dashboard-home-link { padding: .625rem 1rem; border-radius: .5rem; font-size: .875rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s, background .2s, box-shadow .2s; }
+.dashboard-user { color: #d4d4d4; font-size: .875rem; }
 .dashboard-nav-link { border: 1px solid #262626; color: #e5e5e5; background: rgb(23 23 23 / 60%); }
+.dashboard-logout { cursor: pointer; font-family: inherit; }
 .dashboard-nav-link:hover { border-color: #991b1b; color: #f87171; }
 .dashboard-home-link { color: #fff; background: #dc2626; box-shadow: 0 0 15px rgb(220 38 38 / 50%); }
 .dashboard-home-link:hover { background: #b91c1c; box-shadow: 0 0 20px rgb(220 38 38 / 70%); }
@@ -67,6 +69,7 @@
   .dashboard-main { padding: 2rem 0; }
   .dashboard-heading { align-items: flex-start; flex-direction: column; }
   .dashboard-nav-link { display: none; }
+  .dashboard-user { display: none; }
   .report-grid, .summary-grid { grid-template-columns: 1fr; }
   .report-card-wide { grid-column: auto; }
 }

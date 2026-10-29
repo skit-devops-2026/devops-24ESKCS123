@@ -3,6 +3,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:3000/api
     ports:
       - "8080:80"
     depends_on:
@@ -12,7 +14,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    # Fedora's local MongoDB listens on the host loopback interface.
+    network_mode: host
     env_file:
       - ./backend/.env
-    ports:
-      - "3000:3000"
