@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import AuthField from '../components/AuthField.jsx'
 import AuthLayout from '../components/AuthLayout.jsx'
+import { useAuth } from '../context/AuthContext.jsx'
 import '../styles/LoginPage.css'
 
 const initialForm = { email: '', password: '', rememberMe: false }
@@ -25,10 +26,12 @@ function validateForm(form) {
 }
 
 function LoginPage() {
+  const { login } = useAuth()
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
   const [success, setSuccess] = useState(false)
   const [toast, setToast] = useState(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const inputRefs = useRef({})
 
   useEffect(() => {
@@ -51,7 +54,7 @@ function LoginPage() {
     setSuccess(false)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const nextErrors = validateForm(form)
 
@@ -65,9 +68,17 @@ function LoginPage() {
     }
 
     setErrors({})
-    setSuccess(true)
-    setToast({ message: 'Signed in successfully.', type: 'success' })
-    setForm(initialForm)
+    setIsSubmitting(true)
+    try {
+      await login(form.email, form.password, form.rememberMe)
+      setSuccess(true)
+      setToast({ message: 'Signed in successfully.', type: 'success' })
+      window.location.replace('/dashboard')
+    } catch (error) {
+      setToast({ message: error.message, type: 'error' })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -141,7 +152,7 @@ function LoginPage() {
               </label>
               <a href="#" className="forgot-link">Forgot password?</a>
             </div>
-            <button type="submit" className="submit-button">Sign in</button>
+            <button type="submit" className="submit-button" disabled={isSubmitting}>{isSubmitting ? 'Signing in…' : 'Sign in'}</button>
           </form>
 
           <p className="signin-prompt">New to TrustLens? <a href="/signup">Create an account</a></p>

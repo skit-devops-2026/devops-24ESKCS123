@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import AuthField from '../components/AuthField.jsx'
 import AuthLayout from '../components/AuthLayout.jsx'
+import { useAuth } from '../context/AuthContext.jsx'
 
 const initialForm = {
   fullName: '',
@@ -44,11 +45,13 @@ const validateForm = (form) => {
   return errors
 }
 
-function App() {
+function SignupPage() {
+  const { signup } = useAuth()
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
   const [success, setSuccess] = useState(false)
   const [toast, setToast] = useState(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const inputRefs = useRef({})
 
   useEffect(() => {
@@ -80,7 +83,7 @@ function App() {
     setSuccess(false)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const nextErrors = validateForm(form)
 
@@ -94,9 +97,23 @@ function App() {
     }
 
     setErrors({})
-    setSuccess(true)
-    setToast({ message: 'Account created successfully!', type: 'success' })
-    setForm(initialForm)
+    setIsSubmitting(true)
+    try {
+      await signup({
+        fullName: form.fullName,
+        email: form.email,
+        password: form.password,
+        goal: form.goal,
+        updates: form.updates,
+      })
+      setSuccess(true)
+      setToast({ message: 'Account created successfully!', type: 'success' })
+      window.location.replace('/dashboard')
+    } catch (error) {
+      setToast({ message: error.message, type: 'error' })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -208,7 +225,7 @@ function App() {
                   <span>I agree to receive scam alerts and platform updates relevant to my job search.</span>
                 </label>
 
-                <button type="submit" className="submit-button">Create my account</button>
+                <button type="submit" className="submit-button" disabled={isSubmitting}>{isSubmitting ? 'Creating account…' : 'Create my account'}</button>
               </form>
 
               <p className="signin-prompt">
