@@ -12,6 +12,10 @@ function getScans(token) {
   return request('/scans', { token })
 }
 
+function getScan(token, id) {
+  return request(`/scans/${id}`, { token })
+}
+
 function updateScan(token, id, updates) {
   return request(`/scans/${id}`, {
     method: 'PATCH',
@@ -27,4 +31,4 @@ function deleteScan(token, id) {
   })
 }
 
-export { createScan, deleteScan, getScans, updateScan }
+export { createScan, deleteScan, getScan, getScans, updateScan }

@@ -18,4 +18,12 @@ function getCurrentUser(token) {
   return request('/auth/me', { token })
 }
 
-export { getCurrentUser, login, signup }
+function updateCurrentUser(token, updates) {
+  return request('/auth/me', {
+    method: 'PATCH',
+    token,
+    body: JSON.stringify(updates),
+  })
+}
+
+export { getCurrentUser, login, signup, updateCurrentUser }
