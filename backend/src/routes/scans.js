@@ -114,6 +114,10 @@ router.patch('/:id', async (request, response, next) => {
         response.status(400).json({ error: 'title cannot be empty' });
         return;
       }
+      if (title.length > 150) {
+        response.status(400).json({ error: 'title cannot exceed 150 characters' });
+        return;
+      }
       updates.title = title;
     }
 
@@ -129,7 +133,7 @@ router.patch('/:id', async (request, response, next) => {
     const scan = await Scan.findOneAndUpdate(
       { _id: request.params.id, userId: request.userId },
       updates,
-      { new: true },
+      { new: true, runValidators: true },
     );
 
     if (!scan) {
