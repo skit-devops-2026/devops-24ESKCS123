@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { ApiError } from '../api/client.js'
-import { getCurrentUser, login as loginRequest, signup as signupRequest } from '../api/auth.js'
+import { getCurrentUser, login as loginRequest, signup as signupRequest, updateCurrentUser } from '../api/auth.js'
 
 const AuthContext = createContext(null)
 const TOKEN_KEY = 'trustlens_token'
@@ -86,6 +86,12 @@ function AuthProvider({ children }) {
     setUser(null)
   }
 
+  const updateUser = async (updates) => {
+    const response = await updateCurrentUser(session.token, updates)
+    setUser(response.user)
+    return response.user
+  }
+
   const value = useMemo(() => ({
     user,
     token: session.token,
@@ -93,6 +99,7 @@ function AuthProvider({ children }) {
     isAuthenticated: Boolean(user && session.token),
     login,
     signup,
+    updateUser,
     logout,
   }), [isLoading, session.token, user])
 

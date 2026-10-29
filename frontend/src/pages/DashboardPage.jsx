@@ -51,7 +51,14 @@ function DashboardPage() {
   }), [scans])
 
   const pinnedScans = scans.filter((scan) => scan.pinned)
-  const recentScans = scans.slice(0, 8)
+  const [search, setSearch] = useState('')
+  const [riskFilter, setRiskFilter] = useState('all')
+  const [sortOrder, setSortOrder] = useState('newest')
+  const filteredScans = scans
+    .filter((scan) => riskFilter === 'all' || scan.riskLevel === riskFilter)
+    .filter((scan) => `${scan.title} ${scan.summary} ${scan.inputText}`.toLowerCase().includes(search.toLowerCase()))
+    .sort((a, b) => sortOrder === 'newest' ? new Date(b.createdAt) - new Date(a.createdAt) : new Date(a.createdAt) - new Date(b.createdAt))
+  const recentScans = filteredScans.slice(0, 8)
 
   const handleLogout = () => {
     logout()
@@ -101,8 +108,14 @@ function DashboardPage() {
           <div className="dashboard-nav-actions">
             <span className="dashboard-user">{user?.fullName}</span>
             <a href="/detector" className="dashboard-nav-link">New scan</a>
+            <a href="/settings" className="dashboard-nav-link">Settings</a>
             <button type="button" className="dashboard-nav-link dashboard-logout" onClick={handleLogout}>Log out</button>
             <a href="/" className="dashboard-home-link">Home</a>
+          </div>
+          <div className="dashboard-filters">
+            <input aria-label="Search scans" placeholder="Search reports…" value={search} onChange={(event) => setSearch(event.target.value)} />
+            <select aria-label="Filter by risk" value={riskFilter} onChange={(event) => setRiskFilter(event.target.value)}><option value="all">All risk levels</option><option>High risk</option><option>Medium risk</option><option>Low risk</option></select>
+            <select aria-label="Sort scans" value={sortOrder} onChange={(event) => setSortOrder(event.target.value)}><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select>
           </div>
         </div>
       </nav>
@@ -175,7 +188,7 @@ function ScanRow({ scan, onTogglePin, onRename, onDelete }) {
     <article className="scan-row">
       <div className={`scan-score ${tone}`}><strong>{scan.score}%</strong><span>{scan.riskLevel}</span></div>
       <div className="scan-row-content">
-        <h3>{scan.title}</h3>
+        <h3><a href={`/scans/${scan._id}`}>{scan.title}</a></h3>
         <p>{scan.summary}</p>
         <time dateTime={scan.createdAt}>{formatDate(scan.createdAt)}</time>
       </div>

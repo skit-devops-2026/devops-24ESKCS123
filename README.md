@@ -131,6 +131,13 @@ The deployment record is committed at
 - `PATCH /api/scans/:id`
 - `DELETE /api/scans/:id`
 
+The authenticated frontend also provides:
+
+- `/dashboard` for searchable, filterable scan history and pinned reports.
+- `/scans/:id` for a full saved report, including the original submitted text,
+  flags, recommendations, and pin controls.
+- `/settings` for updating the user's name, primary goal, and alert preference.
+
 ## Monitoring
 
 Prometheus scrape settings are in
