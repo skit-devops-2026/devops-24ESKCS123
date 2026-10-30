@@ -26,56 +26,6 @@ make install
 make run
 ```
 
-### Backend environment setup (required for auth and CRUD APIs)
-
-1. Copy [backend/.env.example](./backend/.env.example) to `backend/.env`.
-2. For a local MongoDB installation, use:
-
-   ```env
-   MONGODB_URI=mongodb://127.0.0.1:27017/trustlens
-   ```
-
-   For MongoDB Atlas, replace it with your Atlas connection string.
-3. Set a strong `JWT_SECRET`.
-
-The backend also reads `backend/atlas-credentials.env` if present (local only).
-Never commit real credentials.
-
-### Frontend API configuration
-
-The React frontend calls the backend through `/api` by default. Vite proxies
-that path to `http://localhost:3000` during local development. The frontend
-stores JWT sessions in browser storage and uses the selected login preference:
-**Remember me** uses persistent storage, while an unchecked preference uses
-session storage.
-
-For Docker Compose, the frontend image is built with
-`http://localhost:3000/api`, which matches the published backend port. For a
-hosted deployment, set the Vite build variable to the public backend URL:
-
-```bash
-VITE_API_URL=https://your-backend.example.com/api npm run build
-```
-
-Signup and login now create real backend sessions, authenticated users are
-redirected to the dashboard, and dashboard access redirects unauthenticated
-visitors to the login page. Use the dashboard's **Log out** action to clear
-the current session.
-
-### Local MongoDB on Linux
-
-The application expects MongoDB to be running on port `27017`. Verify it with:
-
-```bash
-sudo systemctl enable --now mongod
-mongosh --quiet --eval 'db.adminCommand({ ping: 1 })'
-```
-
-The default Compose setup uses Linux host networking for the backend so it can
-reach MongoDB listening on `127.0.0.1`. This is intended for local Linux
-development; use a containerized MongoDB service or platform-specific
-networking on non-Linux systems.
-
 ## Containerization
 
 The React frontend and the minimal Node backend can be run together with Docker
