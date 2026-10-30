@@ -105,12 +105,14 @@ function DashboardPage() {
       <nav className="dashboard-nav">
         <div className="dashboard-container dashboard-nav-inner">
           <a href="/" className="dashboard-brand"><TrustLensBrand /></a>
-          <div className="dashboard-nav-actions">
-            <span className="dashboard-user">{user?.fullName}</span>
+          <div className="dashboard-nav-links">
+            <a href="/" className="dashboard-nav-link dashboard-home-link" aria-current="page">Home</a>
             <a href="/detector" className="dashboard-nav-link">New scan</a>
             <a href="/settings" className="dashboard-nav-link">Settings</a>
+          </div>
+          <div className="dashboard-nav-actions">
+            <span className="dashboard-user">{user?.fullName}</span>
             <button type="button" className="dashboard-nav-link dashboard-logout" onClick={handleLogout}>Log out</button>
-            <a href="/" className="dashboard-home-link">Home</a>
           </div>
           <div className="dashboard-filters">
             <input aria-label="Search scans" placeholder="Search reports…" value={search} onChange={(event) => setSearch(event.target.value)} />
